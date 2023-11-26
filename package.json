@@ -4,7 +4,7 @@
   "description": "test file",
   "main": "server.js",
   "scripts": {
-    "run": "nodemon backend/server.js"
+    "start": "nodemon backend/server.js"
   },
   "author": "",
   "license": "ISC",
