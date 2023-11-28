@@ -4,10 +4,10 @@ const {
   loginUser,
   hello,
 } = require("../controllers/userControllers");
+
 const auth = require("../middleware/authmiddleware");
 
 const router = express.Router();
-
 
 router.post("/register", registerUser);
 
