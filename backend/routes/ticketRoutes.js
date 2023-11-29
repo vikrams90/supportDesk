@@ -15,7 +15,7 @@ router.route("/:id").get(auth, getSingleTicket).delete(auth, deleteTicket).put(a
 
 router.get("/", auth, getTicket);
 
-router.post("/", createTicket);
+router.post("/", auth ,createTicket);
 
 router.use("/note", require("../routes/noteRoute"))
 // router.use("/note/:ticketId", require("../routes/noteRoute"))
