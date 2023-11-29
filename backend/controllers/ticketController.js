@@ -94,9 +94,39 @@ const deleteTicket = asyncHandler(async (req, res) => {
   });
 });
 
+const updateTicket = asyncHandler(async(req,res)=>{
+  const id = req.params.id;
+
+  const user = await userCollection.findById(req.user._id);
+
+  if (!user) {
+    res.status(401);
+    throw new Error("user not found");
+  }
+
+  const tickets = await ticketCollection.findById(id);
+  if (!tickets) {
+    res.status(404);
+    throw new Error("ticket not found");
+  }
+
+  if (tickets.user.toString() !== req.user._id.toString()) {
+    res.status(401);
+    throw new Error("Not Authorized");
+  }
+
+  const result = await ticketCollection.findByIdAndUpdate(id,req.body,{new : true});
+  if (!result) {
+    res.status(401);
+    throw new Error("unable to delete");
+  }
+  res.status(200).json(result);
+})
+
 module.exports = {
   getSingleTicket,
   getTicket,
   createTicket,
   deleteTicket,
+  updateTicket
 };
