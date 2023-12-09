@@ -1,5 +1,6 @@
-import {createTheme} from '@mui/material'
+import {ThemeProvider, createTheme} from '@mui/material'
 import Signin from './screens/Signin'
+import Navbar from './components/Navbar'
 
 const App = () => {
 
@@ -17,7 +18,9 @@ const App = () => {
   })
 
   return (
-    <div><Signin/></div>
+    <ThemeProvider theme={theme}>
+      <Navbar/>
+    </ThemeProvider>
   )
 }
 
